@@ -16,19 +16,19 @@ public class Hotel {                                            // Class of type
         return hotelName;
     }
 
-    public void setHotelName(String hotelName) {	           // Method used to set the hotel name
+    public void setHotelName(String hotelName) {	            // Method used to set the hotel name
         this.hotelName = hotelName;
     }
 
-    public List<Room> getRoomDetails() {	                   // Method used to access the room details
+    public List<Room> getRoomDetails() {	                    // Method used to access the room details
         return roomDetails;
     }
 
-    public void setRoomDetails(List<Room> roomDetails) {	   // Method used to set the room details
+    public void setRoomDetails(List<Room> roomDetails) {	    // Method used to set the room details
         this.roomDetails = roomDetails;
     }
 
-    public int getHotelTotalRooms() {	                      // Method used to access the total number of rooms in the hotel
+    public int getHotelTotalRooms() {	                        // Method used to access the total number of rooms in the hotel
         return roomDetails.size();
     }
 
