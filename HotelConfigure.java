@@ -38,11 +38,21 @@ public class HotelConfigure {                               // Class used to all
         totalRooms = s.nextInt();
 
         for (int i = 0; i < totalRooms; i++) {
+            boolean roomOccupancy = true;
+            String roomOccupancyInput = "Yes";
             HotelConfigure h = new HotelConfigure();
             List<Bed> bedType = h.setBedType(i + 1);
             int totalBeds = bedType.size();
+            
+            
+            System.out.print("Is this room occupied? Please enter (Yes/No): ");
+            roomOccupancyInput = s.next();
+            
+            if(roomOccupancyInput.equals("No")) {
+                roomOccupancy = false;
+            }
 
-            Room hotelRoom = new Room(bedType, totalBeds);
+            Room hotelRoom = new Room(bedType, totalBeds, roomOccupancy);
             hotelRooms.add(hotelRoom);
         }
 

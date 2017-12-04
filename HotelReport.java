@@ -8,30 +8,46 @@ public class HotelReport {
     }
 
     public void displayHotel() {
+        printHeader();
         printName();
         printRoomDetails();
         printTotalOccupancy();
     }
+    
+    public void printHeader() {
+        System.out.println("\n--------------------------------------------------");
+        System.out.println("\t\tHotel Report");
+        System.out.println("--------------------------------------------------\n");
+    }
 
     public void printName() {
-        System.out.println("\n--------------------------------------------------\n");
-        System.out.println("Name: " + currentHotel.getHotelName());
+        System.out.println("Hotel Name: " + currentHotel.getHotelName());
     }
 
     public void printRoomDetails() {
-        System.out.println("\nTotal rooms: " + currentHotel.getHotelTotalRooms());
+        System.out.println("\nTotal Rooms in Hotel: " + currentHotel.getHotelTotalRooms());
         for (int i = 0; i < currentHotel.getHotelTotalRooms(); i++) {
             Room currentRoom = currentHotel.getRoomDetails().get(i);
-            System.out.println("\nRoom " + (i + 1) + " contains " + currentRoom.getBedCount() + " beds: ");
-
+            String a = "beds";
+            
+            
+            if(currentRoom.getBedCount() == 1) {
+                a = "bed";
+            }
+            System.out.println("\nRoom " + (i + 1) + " contains " + currentRoom.getBedCount() + " " + a + ": ");
             for (int j = 0; j < currentRoom.getBedCount(); j++) {
                 Bed bedType = currentRoom.getBedTypes().get(j);
-                System.out.println("Bed " + (j + 1) + ": " + bedType.getBedType());
+                System.out.println("\tBed " + (j + 1) + ": " + bedType.getBedType());
+            }
+            if(currentRoom.isRoomOccupancy()) {
+                System.out.println("\tCurrently occupied");
+            } else {
+                System.out.println("\tCurrently vacant");
             }
         }
     }
 
     public void printTotalOccupancy() {
-        System.out.println("\nTotal guest capacity: " + currentHotel.getTotalOccupancy());
+        System.out.println("\nTotal Guest Capacity: " + currentHotel.getTotalOccupancy());
     }
 }

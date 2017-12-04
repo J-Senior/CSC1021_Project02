@@ -6,10 +6,12 @@ public class Room {                                     // Class of type Room
     private List<Bed> bedTypes = new ArrayList<Bed>();  // Field containing bed details in the form of a list containing bed objects
     private int bedCount = 0;                           // Field containing the number of beds in a room
     private int roomSize = 0;                           // Field containing the number of guests who can stay in a room
-
-    public Room(List<Bed> bedTypes, int bedCount) {     // Constructor used when making room objects
+    private boolean roomOccupancy = true;
+    
+    public Room(List<Bed> bedTypes, int bedCount, boolean roomOccupancy) {     // Constructor used when making room objects
         this.bedTypes = bedTypes;
         this.bedCount = bedCount;
+        this.roomOccupancy = roomOccupancy;
     }
 
     public List<Bed> getBedTypes() {                    // Method used to access the types of beds in a room
@@ -35,5 +37,13 @@ public class Room {                                     // Class of type Room
     public void setRoomSize(int roomSize) {             // Method used to set the number of guests who can stay in a room
 
         this.roomSize = roomSize;
+    }
+
+    public boolean isRoomOccupancy() {
+        return roomOccupancy;
+    }
+
+    public void setRoomOccupancy(boolean roomOccupancy) {
+        this.roomOccupancy = roomOccupancy;
     }
 }

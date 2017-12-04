@@ -4,9 +4,9 @@ import java.util.List;
 public class Hotel {                                            // Class of type Hotel
 
     private String hotelName = "Empty";                         // Field containing the name of the hotel
-    private List<Room> roomDetails = new ArrayList<Room>();     // Field containing room details in the form of a list
-                                                                // containing room objects
-
+    private List<Room> roomDetails = new ArrayList<Room>();     // Field containing room details in the form of a list containing room objects
+    private boolean hasVacancies = true;
+    
     public Hotel(String hotelName, List<Room> roomDetails) {    // Constructor used when making Hotel objects
         this.hotelName = hotelName;
         this.roomDetails = roomDetails;
@@ -16,25 +16,25 @@ public class Hotel {                                            // Class of type
         return hotelName;
     }
 
-    public void setHotelName(String hotelName) {	           // Method used to set the hotel name
+    public void setHotelName(String hotelName) {	            // Method used to set the hotel name
         this.hotelName = hotelName;
     }
 
-    public List<Room> getRoomDetails() {	                   // Method used to access the room details
+    public List<Room> getRoomDetails() {	                    // Method used to access the room details
         return roomDetails;
     }
 
-    public void setRoomDetails(List<Room> roomDetails) {	   // Method used to set the room details
+    public void setRoomDetails(List<Room> roomDetails) {	    // Method used to set the room details
         this.roomDetails = roomDetails;
     }
 
-    public int getHotelTotalRooms() {	                      // Method used to access the total number of rooms in the hotel
+    public int getHotelTotalRooms() {	                        // Method used to access the total number of rooms in the hotel
         return roomDetails.size();
     }
 
-    public int getTotalOccupancy() {
-        List<Room> hotelTotalRooms = getRoomDetails();       // List used to hold the current hotel's room details
-        List<Bed> hotelTotalBeds = new ArrayList<Bed>();     // List used to hold the current hotel's bed details
+    public int getTotalOccupancy() {                            // Method used to set and access the max number of guests in the hotel
+        List<Room> hotelTotalRooms = getRoomDetails();          // List used to hold the current hotel's room details
+        List<Bed> hotelTotalBeds = new ArrayList<Bed>();        // List used to hold the current hotel's bed details
         int occupancy = 0;
 
         for (int i = 0; i < hotelTotalRooms.size(); i++) {            // Loops through for the total number of rooms
@@ -50,7 +50,7 @@ public class Hotel {                                            // Class of type
             Bed currentBed = hotelTotalBeds.get(k);
             String currentBedSize = currentBed.getBedType();
 
-            if (currentBedSize == "Single") {
+            if (currentBedSize.equals("Single")) {
                 occupancy += 1;
             } else {
                 occupancy += 2;
@@ -58,5 +58,15 @@ public class Hotel {                                            // Class of type
         }
 
         return occupancy;
+    }
+
+    
+    public boolean isHasVacancies() {
+        return hasVacancies;
+    }
+    
+
+    public void setHasVacancies(boolean hasVacancies) {
+        this.hasVacancies = hasVacancies;
     }
 }

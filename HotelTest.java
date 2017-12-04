@@ -24,11 +24,17 @@ public class HotelTest {
         int totalRooms = 3;
 
         for (int i = 0; i < totalRooms; i++) {
+            boolean roomOccupancy = true;
+            String roomOccupancyInput = "Yes";
             HotelTest h = new HotelTest();
             List<Bed> bedType = h.setBedType(i + 1);
             int totalBeds = bedType.size();
 
-            Room hotelRoom = new Room(bedType, totalBeds);
+            if(roomOccupancyInput == "No") {
+                roomOccupancy = false;
+            }
+
+            Room hotelRoom = new Room(bedType, totalBeds, roomOccupancy);
             hotelRooms.add(hotelRoom);
         }
 
