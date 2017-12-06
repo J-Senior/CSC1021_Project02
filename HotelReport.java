@@ -3,28 +3,29 @@ public class HotelReport {
 
     private Hotel currentHotel;
 
-    public HotelReport(Hotel currentHotel) {
+    public HotelReport(Hotel currentHotel) {        // Constructor used when making HotelReport objects
         this.currentHotel = currentHotel;
     }
 
-    public void displayHotel() {
+    public void displayHotel() {                    // Method used to display the current hotel details
         printHeader();
         printName();
         printRoomDetails();
         printTotalOccupancy();
+        printHotelVacancy();
     }
     
-    public void printHeader() {
+    public void printHeader() {                     // Method used to print a header for aesthetics
         System.out.println("\n--------------------------------------------------");
         System.out.println("\t\tHotel Report");
         System.out.println("--------------------------------------------------\n");
     }
 
-    public void printName() {
+    public void printName() {                       // Method used to print the hotel name
         System.out.println("Hotel Name: " + currentHotel.getHotelName());
     }
 
-    public void printRoomDetails() {
+    public void printRoomDetails() {                // Method used o print the hotel's room details
         System.out.println("\nTotal Rooms in Hotel: " + currentHotel.getHotelTotalRooms());
         for (int i = 0; i < currentHotel.getHotelTotalRooms(); i++) {
             Room currentRoom = currentHotel.getRoomDetails().get(i);
@@ -47,7 +48,12 @@ public class HotelReport {
         }
     }
 
-    public void printTotalOccupancy() {
+    public void printTotalOccupancy() {	            // Method used to display the total capacity of the hotel
         System.out.println("\nTotal Guest Capacity: " + currentHotel.getTotalOccupancy());
     }
+    
+    public void printHotelVacancy() {               // Method used to state whether or not there is an empty room
+        System.out.println("Hotel has a Room Vacant: " + currentHotel.isHasVacancies());
+    }
+    
 }

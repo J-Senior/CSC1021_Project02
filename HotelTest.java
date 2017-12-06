@@ -9,7 +9,8 @@ public class HotelTest {
 
         String name = h.setName();
         List<Room> hotelRooms = h.setRooms();
-        Hotel currentHotel = new Hotel(name, hotelRooms);
+        boolean vacancies = h.setVacancy(hotelRooms);
+        Hotel currentHotel = new Hotel(name, hotelRooms, vacancies);
 
         h.displayInfo(currentHotel);
     }
@@ -30,7 +31,7 @@ public class HotelTest {
             List<Bed> bedType = h.setBedType(i + 1);
             int totalBeds = bedType.size();
 
-            if(roomOccupancyInput == "No") {
+            if(roomOccupancyInput.equals("No")) {
                 roomOccupancy = false;
             }
 
@@ -59,6 +60,21 @@ public class HotelTest {
             }
         }
         return bedType;
+    }
+    
+    public boolean setVacancy(List<Room> hotelRooms) {
+        boolean hotelVacancy = false;
+        int counter = 0;
+        
+        for(int i=0; i < hotelRooms.size(); i++) {
+            if(!hotelRooms.get(i).isRoomOccupancy()) {
+                counter++;
+            }
+        }
+        if(counter > 0) {
+            hotelVacancy = true;
+        }
+        return hotelVacancy;
     }
 
     public void displayInfo(Hotel currentHotel) {
