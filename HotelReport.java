@@ -53,7 +53,11 @@ public class HotelReport {
     }
     
     public void printHotelVacancy() {               // Method used to state whether or not there is an empty room
-        System.out.println("Hotel has a Room Vacant: " + currentHotel.isHasVacancies());
+        if(currentHotel.isHasVacancies()) {
+            System.out.println("This Hotel has a Vacant Room.");
+        } else {
+            System.out.println("This Hotel has no Vacant Rooms.");
+        }
     }
     
 }

@@ -5,6 +5,9 @@ import java.util.Scanner;
 @SuppressWarnings("resource")
 
 public class HotelConfigure {                               // Class used to allow user input values of a hotel object
+    
+    private int attempt = 0;
+    private int maxAttempts = 3;
 
     public static void main(String[] args) {
 
@@ -25,7 +28,7 @@ public class HotelConfigure {                               // Class used to all
         String name = "Empty";
 
         System.out.print("Please enter the hotel name: ");
-        name = s.next();
+        name = s.nextLine();
 
         return name;
     }
@@ -36,9 +39,30 @@ public class HotelConfigure {                               // Class used to all
         Scanner s = new Scanner(System.in);
 
         System.out.print("Please enter the number of rooms in the hotel: ");
-        totalRooms = s.nextInt();
+        while( true ) {
+            try {
+                totalRooms = s.nextInt();
+                if(totalRooms > 0) {
+                    break;
+                } if( attempt < maxAttempts ) {
+                    if ( attempt == (maxAttempts - 1) ) {
+                        throw new IllegalArgumentException("The user has entered too many incorrect inputs");
+                    }
+                    attempt++;
+                    System.out.print("Please enter an integer greater than 0: ");
+                }
+            } catch (Exception a) {
+                if ( attempt == (maxAttempts - 1) ) {
+                    throw new IllegalArgumentException("The user has entered too many incorrect inputs");
+                }
+                attempt++;
+                System.out.print("Please enter an integer greater than 0: ");
+                s.next();
+            }
+        }
+        attempt = 0;
 
-        for (int i = 0; i < totalRooms; i++) {              // A loop to allow the user to input the details of each room
+        for ( int i = 0; i < totalRooms; i++ ) {              // A loop to allow the user to input the details of each room
             boolean roomOccupancy = true;
             String roomOccupancyInput = "Yes";
             HotelConfigure h = new HotelConfigure();        // Construct a HotelConfigure object to allow use of the setBedType method
@@ -47,9 +71,31 @@ public class HotelConfigure {                               // Class used to all
             
             
             System.out.print("Is this room occupied? Please enter (Yes/No): ");
-            roomOccupancyInput = s.next();
+            roomOccupancyInput = s.nextLine();
+            while( true ) {
+                try {
+                    roomOccupancyInput = s.nextLine();
+                    if( roomOccupancyInput.equals("No") || roomOccupancyInput.equals("Yes") ) {
+                        break;
+                    } if( attempt < maxAttempts ) {
+                        if ( attempt == (maxAttempts - 1) ) {
+                            throw new IllegalArgumentException("The user has entered too many incorrect inputs");
+                        }
+                        attempt++;
+                        System.out.print("Please enter either Yes or No: ");
+                    }
+                } catch (Exception a) {
+                    if ( attempt == (maxAttempts - 1) ) {
+                        throw new IllegalArgumentException("The user has entered too many incorrect inputs");
+                    }
+                    attempt++;
+                    System.out.print("Please enter either Yes or No: ");
+                    roomOccupancyInput = s.nextLine();
+                }
+            }
+            attempt = 0;
             
-            if(roomOccupancyInput.equals("No")) {           // If the current room was stated to be empty
+            if( roomOccupancyInput.equals("No") ) {           // If the current room was stated to be empty
                 roomOccupancy = false;                      // Set the status as false
             }
 
@@ -67,10 +113,58 @@ public class HotelConfigure {                               // Class used to all
         Scanner s = new Scanner(System.in);
 
         System.out.print("\nPlease enter the number beds in room " + roomNumber + ": ");
-        totalBeds = s.nextInt();
+        while( true ) {
+            try {
+                totalBeds = s.nextInt();
+                if( totalBeds > 0 ) {
+                    break;
+                } if( attempt < maxAttempts ) {
+                    if ( attempt == (maxAttempts - 1) ) {
+                        throw new IllegalArgumentException("The user has entered too many incorrect inputs");
+                    }
+                    attempt++;
+                    System.out.print("Please enter an integer greater than 0: ");
+                }
+            } catch (Exception a) {
+                if ( attempt == (maxAttempts - 1) ) {
+                    throw new IllegalArgumentException("The user has entered too many incorrect inputs");
+                }
+                attempt++;
+                System.out.print("Please enter an integer greater than 0: ");
+                s.next();
+            }
+        }
+        attempt = 0;
 
         System.out.print("Please enter the number single beds in the room: ");
-        singleBeds = s.nextInt();
+        while( true ) {
+            try {
+                singleBeds = s.nextInt();
+                if((singleBeds >= 0) && (singleBeds <= totalBeds)) {
+                    break;
+                } if( attempt < maxAttempts ) {
+                    if ( attempt == (maxAttempts - 1) ) {
+                        throw new IllegalArgumentException("The user has entered too many incorrect inputs");
+                    }
+                    attempt++;
+                    if( singleBeds < 0 ) {
+                        System.out.print("Please enter an integer greater than or equal to 0: ");
+                    }
+                    if( singleBeds > totalBeds ) {
+                        System.out.print("Please enter an integer less than or equal to " + totalBeds + ": ");
+                    }
+                    
+                }
+            } catch (Exception a) {
+                if (attempt == (maxAttempts - 1)) {
+                    throw new IllegalArgumentException("The user has entered too many incorrect inputs");
+                }
+                attempt++;
+                System.out.print("Please enter an integer: ");
+                s.next();
+            }
+        }
+        attempt = 0;
 
         int doubleBeds = totalBeds - singleBeds;
 
