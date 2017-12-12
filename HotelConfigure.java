@@ -1,3 +1,18 @@
+/* Filename:        HotelConfigure.java
+ * Date:            2017-12-12
+ * Name:            Senior J.J.
+ * Student number:  160474257
+ * -------------------------------------------------------
+ * By submitting this file electronically, I declare that
+ * it is my own original work, and that I have not copied
+ * any part of it from another source.
+ * -------------------------------------------------------
+ * HotelConfigure is a class used to receive information 
+ * about a hotel from a user. It requires the Hotel,
+ * Room, Bed, and HotelReport classes to function.
+ * -------------------------------------------------------
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -6,8 +21,8 @@ import java.util.Scanner;
 
 public class HotelConfigure {                               // Class used to allow user input values of a hotel object
     
-    private int attempt = 0;
-    private int maxAttempts = 3;
+    private int attempt = 0;                                // Used to count the number of incorrect inputs
+    private int maxAttempts = 5;                            // The max number of incorrect inputs a user may enter per variable
 
     public static void main(String[] args) {
 
@@ -24,8 +39,8 @@ public class HotelConfigure {                               // Class used to all
     }
 
     public String setName() {                               // Method used to receive the hotel name from the user
-        Scanner s = new Scanner(System.in);
         String name = "Empty";
+        Scanner s = new Scanner(System.in);
 
         System.out.print("Please enter the hotel name: ");
         name = s.nextLine();
@@ -44,7 +59,8 @@ public class HotelConfigure {                               // Class used to all
                 totalRooms = s.nextInt();
                 if(totalRooms > 0) {
                     break;
-                } if( attempt < maxAttempts ) {
+                }
+                if( attempt < maxAttempts ) {
                     if ( attempt == (maxAttempts - 1) ) {
                         throw new IllegalArgumentException("The user has entered too many incorrect inputs");
                     }
@@ -62,22 +78,23 @@ public class HotelConfigure {                               // Class used to all
         }
         attempt = 0;
 
-        for ( int i = 0; i < totalRooms; i++ ) {              // A loop to allow the user to input the details of each room
+        s.nextLine();
+        for ( int i = 0; i < totalRooms; i++ ) {        // A loop to allow the user to input the details of each room
             boolean roomOccupancy = true;
             String roomOccupancyInput = "Yes";
-            HotelConfigure h = new HotelConfigure();        // Construct a HotelConfigure object to allow use of the setBedType method
-            List<Bed> bedType = h.setBedType(i + 1);        // Declare a list of beds and fill it using the setBedType method
-            int totalBeds = bedType.size();                 // Set the number of beds in the room using the bed list
+            List<Bed> bedType = setBedType(i + 1);      // Declare a list of beds and fill it using the setBedType method
+            int totalBeds = bedType.size();             // Set the number of beds in the room using the bed list
             
             
             System.out.print("Is this room occupied? Please enter (Yes/No): ");
-            roomOccupancyInput = s.nextLine();
+            
             while( true ) {
                 try {
                     roomOccupancyInput = s.nextLine();
                     if( roomOccupancyInput.equals("No") || roomOccupancyInput.equals("Yes") ) {
                         break;
-                    } if( attempt < maxAttempts ) {
+                    }
+                    if( attempt < maxAttempts ) {
                         if ( attempt == (maxAttempts - 1) ) {
                             throw new IllegalArgumentException("The user has entered too many incorrect inputs");
                         }
@@ -118,7 +135,8 @@ public class HotelConfigure {                               // Class used to all
                 totalBeds = s.nextInt();
                 if( totalBeds > 0 ) {
                     break;
-                } if( attempt < maxAttempts ) {
+                }
+                if( attempt < maxAttempts ) {
                     if ( attempt == (maxAttempts - 1) ) {
                         throw new IllegalArgumentException("The user has entered too many incorrect inputs");
                     }
@@ -142,7 +160,8 @@ public class HotelConfigure {                               // Class used to all
                 singleBeds = s.nextInt();
                 if((singleBeds >= 0) && (singleBeds <= totalBeds)) {
                     break;
-                } if( attempt < maxAttempts ) {
+                }
+                if( attempt < maxAttempts ) {
                     if ( attempt == (maxAttempts - 1) ) {
                         throw new IllegalArgumentException("The user has entered too many incorrect inputs");
                     }

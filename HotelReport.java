@@ -1,3 +1,17 @@
+/* Filename:        HotelReport.java
+ * Date:            2017-12-12
+ * Name:            Senior J.J.
+ * Student number:  160474257
+ * -------------------------------------------------------
+ * By submitting this file electronically, I declare that
+ * it is my own original work, and that I have not copied
+ * any part of it from another source.
+ * -------------------------------------------------------
+ * HotelReport is a class used to receive a Hotel object
+ * and output a formatted report of the data within. It
+ * requires the Hotel, Room, and Bed classes to function.
+ * -------------------------------------------------------
+ */
 
 public class HotelReport {
 
@@ -25,12 +39,11 @@ public class HotelReport {
         System.out.println("Hotel Name: " + currentHotel.getHotelName());
     }
 
-    public void printRoomDetails() {                // Method used o print the hotel's room details
+    public void printRoomDetails() {                // Method used to print the hotel's room details
         System.out.println("\nTotal Rooms in Hotel: " + currentHotel.getHotelTotalRooms());
         for (int i = 0; i < currentHotel.getHotelTotalRooms(); i++) {
             Room currentRoom = currentHotel.getRoomDetails().get(i);
             String a = "beds";
-            
             
             if(currentRoom.getBedCount() == 1) {
                 a = "bed";
